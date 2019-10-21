@@ -1,23 +1,17 @@
 - name: Run Powershell Scripts
   hosts: win
   vars:
-    src_scripts: /mnt/c/scripts
+    src_scripts: ./scripts
     dest_scripts: c:\scripts\
   tasks:
   - name: Copy a single file
     win_copy:
-      src: /mnt/c/scripts/0636920024132/Get-DiskUsage.ps1
-      dest: C:\scripts\0636920024132\Get-DiskUsage.ps1
-      remote_src: no
-
-  - name: Copy a single file
-    win_copy:
-      src: '/mnt/c/Program Files (x86)/Jenkins/war/WEB-INF/lib/launchd-slave-installer-1.2.jar'
-      dest: C:\launchd-slave-installer-1.2.jar
-      remote_src: no      
+      src: ./scripts/Get-DiskUsage.ps1
+      dest: C:\scripts\Get-DiskUsage.ps1
+      remote_src: no  
 
   - name: run a powershell script
-    win_shell: C:\scripts\0636920024132\Get-DiskUsage.ps1
+    win_shell: C:\scripts\Get-DiskUsage.ps1
     register: out
   - debug: var=out.stdout_lines
 
